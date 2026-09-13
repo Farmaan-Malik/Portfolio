@@ -63,7 +63,7 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
       body: string;
       from: string;
     }) => {
-      const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      const key = process.env.WEB3FORMS_KEY;
       if (!key) throw new Error("Email service not configured");
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
