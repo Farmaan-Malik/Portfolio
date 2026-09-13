@@ -36,6 +36,7 @@ export class EmailApp implements PhoneApp {
 
   private cancelBtn: Rect;
   private sendBtn: Rect;
+  private plusBtn: Rect;
   private fromRow: Rect;
   private msgArea: Rect;
   private readonly barY = TOP + 44;
@@ -54,6 +55,7 @@ export class EmailApp implements PhoneApp {
   ) {
     this.cancelBtn = { x: 10, y: TOP + 8, w: 70, h: 30 };
     this.sendBtn = { x: w - 84, y: TOP + 6, w: 72, h: 34 };
+    this.plusBtn = { x: w - 42, y: this.barY + 4, w: 30, h: 28 };
     this.fromRow = { x: 0, y: this.barY + 36, w, h: 36 };
     this.msgArea = { x: 16, y: this.barY + 96, w: w - 32, h: h - (this.barY + 96) - 48 };
   }
@@ -103,6 +105,13 @@ export class EmailApp implements PhoneApp {
       this.host?.exit();
       return;
     }
+    if (inRect(x, y, this.plusBtn)) {
+      // open the visitor's own mail app with the owner address prefilled
+      window.location.href = `mailto:${this.opts.to}?subject=${encodeURIComponent(
+        SUBJECT
+      )}`;
+      return;
+    }
     if (inRect(x, y, this.fromRow)) {
       this.focus = "from";
       return;
@@ -123,6 +132,11 @@ export class EmailApp implements PhoneApp {
     }
     if (!EMAIL_RE.test(email)) {
       this.fromError = "Enter a valid email address";
+      this.focus = "from";
+      return;
+    }
+    if (email.toLowerCase() === this.opts.to.trim().toLowerCase()) {
+      this.fromError = "Use your own email, not mine";
       this.focus = "from";
       return;
     }
@@ -180,8 +194,9 @@ export class EmailApp implements PhoneApp {
     ctx.textAlign = "center";
     ctx.fillText("Send", s.x + s.w / 2, s.y + s.h / 2 + 1);
 
-    // To (fixed)
-    this.fixedField(ctx, "To", this.opts.to, this.barY);
+    // To (fixed) — reserve room for the "+" open-in-mail button
+    this.fixedField(ctx, "To", this.opts.to, this.barY, 44);
+    this.drawPlus(ctx);
 
     // From (editable, required)
     this.editableFromField(ctx, blink);
@@ -256,7 +271,8 @@ export class EmailApp implements PhoneApp {
     ctx: CanvasRenderingContext2D,
     label: string,
     value: string,
-    y: number
+    y: number,
+    reserve = 0
   ) {
     const { w: W } = this;
     ctx.textAlign = "left";
@@ -266,12 +282,32 @@ export class EmailApp implements PhoneApp {
     ctx.fillText(label, 18, y + 18);
     ctx.fillStyle = "rgba(28,38,31,0.9)";
     ctx.font = "14px system-ui, sans-serif";
-    ctx.fillText(value, 74, y + 18, W - 90);
+    ctx.fillText(value, 74, y + 18, W - 90 - reserve);
     ctx.strokeStyle = "rgba(28,38,31,0.1)";
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(16, y + 36);
     ctx.lineTo(W - 16, y + 36);
+    ctx.stroke();
+  }
+
+  // "+" button that opens the visitor's own mail app with the owner prefilled.
+  private drawPlus(ctx: CanvasRenderingContext2D) {
+    const b = this.plusBtn;
+    const cx = b.x + b.w / 2;
+    const cy = b.y + b.h / 2;
+    ctx.fillStyle = "rgba(139,187,146,0.16)";
+    ctx.beginPath();
+    ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "#5f9e79";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(cx - 5, cy);
+    ctx.lineTo(cx + 5, cy);
+    ctx.moveTo(cx, cy - 5);
+    ctx.lineTo(cx, cy + 5);
     ctx.stroke();
   }
 

@@ -75,10 +75,8 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
         body: JSON.stringify({
           access_key: key,
           subject: msg.subject,
-          from_name: msg.from,
-          email: msg.from, // reply-to
-          replyto: msg.from,
-          message: msg.body,
+          from_name: "Portfolio visitor",
+          message: `${msg.body}\n\n— From: ${msg.from}`,
         }),
       });
       const data = await res.json().catch(() => ({ success: false }));
