@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Drive the `dark:` variant off a `.dark` class instead of the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
 
+/* Map Tailwind color tokens to CSS variables so the theme can switch at runtime. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Light — Sage & Clay */
+:root {
+  --background: #eef1e9;
+  --foreground: #202a23;
+  --muted: #616b62;
+  --surface: #ffffff;
+  --accent: #8bbb92;
+  --accent-2: #c9784e;
+
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-border: rgba(32, 42, 35, 0.09);
+  --card-hover-border: rgba(139, 187, 146, 0.7);
+  --card-shadow: 0 1px 2px rgba(32, 42, 35, 0.04),
+    0 12px 32px -14px rgba(32, 42, 35, 0.18);
+  --scrollbar-track: #dde3d8;
+  --scrollbar-thumb: #6faa82;
+  --selection-fg: #172019;
+  --top-highlight: rgba(255, 255, 255, 0.6);
+}
+
+/* Dark — Sage & Clay after dusk */
+.dark {
+  --background: #0f130e;
+  --foreground: #e7ede6;
+  --muted: #93a094;
+  --surface: #171c15;
+  --accent: #8bbb92;
+  --accent-2: #d6835a;
+
+  --card-bg: rgba(21, 26, 20, 0.85);
+  --card-border: rgba(231, 237, 230, 0.1);
+  --card-hover-border: rgba(139, 187, 146, 0.55);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),
+    0 18px 44px -18px rgba(0, 0, 0, 0.65);
+  --scrollbar-track: #171c15;
+  --scrollbar-thumb: #4f7a5b;
+  --selection-fg: #0f130e;
+  --top-highlight: rgba(255, 255, 255, 0.05);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Subtle grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--selection-fg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+  border: 3px solid var(--scrollbar-track);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 45s linear infinite; }
+
+/* Slow ambient drift for background glows (child element, so it doesn't fight
+   the scroll-parallax transform on the parent). */
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(46px, -34px) scale(1.06); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-52px, 40px) scale(1.08); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 30px); }
+}
+.animate-drift-a { animation: drift-a 19s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 24s ease-in-out infinite; }
+.animate-drift-c { animation: drift-c 21s ease-in-out infinite; }
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+.animate-blink { animation: blink 1.1s step-end infinite; }
+
+/* Natural accent gradient text — deeper sage into terracotta for readability */
+.text-accent-gradient {
+  background: linear-gradient(100deg, #5f9e79, #c9784e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dark .text-accent-gradient {
+  background: linear-gradient(100deg, #9ccaa2, #e0916a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card surface */
+.card,
+.glass {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--card-shadow);
+}
+.card:hover {
+  border-color: var(--card-hover-border);
+}
+
+/* Editorial ruled label */
+.rule-label {
+  position: relative;
+  padding-left: 2.75rem;
+}
+.rule-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 2rem;
+  height: 1px;
+  background: #c9784e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
