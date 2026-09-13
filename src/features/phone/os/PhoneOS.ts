@@ -62,7 +62,7 @@ export class PhoneOS {
       const theme = opts.theme;
       icons.push({
         id: "theme",
-        label: "Theme",
+        label: "Switch theme",
         drawIcon: (ctx, x, y, s) => drawThemeIcon(ctx, x, y, s, theme.isDark()),
         onTap: () => theme.toggle(),
       });

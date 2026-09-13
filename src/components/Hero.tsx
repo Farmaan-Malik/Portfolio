@@ -85,7 +85,7 @@ export function Hero() {
             variants={item}
             className="font-mono text-sm text-accent-2"
           >
-            Alright, introductions —
+            In case we haven&apos;t met —
           </motion.p>
 
           <motion.h1

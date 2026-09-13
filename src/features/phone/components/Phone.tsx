@@ -57,9 +57,36 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
       }
     };
 
+    // Actually delivers the message (no mail client) via Web3Forms.
+    const sendEmail = async (msg: {
+      subject: string;
+      body: string;
+      from: string;
+    }) => {
+      const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      if (!key) throw new Error("Email service not configured");
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: key,
+          subject: msg.subject,
+          from_name: msg.from,
+          email: msg.from, // becomes the reply-to
+          replyto: msg.from,
+          message: msg.body,
+        }),
+      });
+      const data = await res.json().catch(() => ({ success: false }));
+      if (!res.ok || !data.success) throw new Error("send failed");
+    };
+
     const apps = [
       new FlappyApp(CANVAS_W, CANVAS_H),
-      new EmailApp(CANVAS_W, CANVAS_H, { to: profile.email, send: openLink }),
+      new EmailApp(CANVAS_W, CANVAS_H, { to: profile.email, send: sendEmail }),
     ];
 
     const phoneOs = new PhoneOS(CANVAS_W, CANVAS_H, apps, {
