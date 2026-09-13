@@ -31,7 +31,7 @@ const item = {
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Only mount the (heavy) 3D phone on desktop — on small screens the nexus
+  // Only mount the (heavy) 3D phone on desktop - on small screens the nexus
   // moves to the About background instead.
   const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
@@ -64,10 +64,10 @@ export function Hero() {
       onMouseMove={onMove}
       className="relative flex min-h-screen items-center overflow-hidden py-24"
     >
-      {/* readability wash over text side — desktop only */}
+      {/* readability wash over text side - desktop only */}
       <div className="pointer-events-none absolute inset-0 z-[1] hidden bg-gradient-to-r from-background via-background/70 to-transparent lg:block" />
 
-      {/* 3D phone — desktop only, fills the right half at full height.
+      {/* 3D phone - desktop only, fills the right half at full height.
           z-20 so the (transparent) text column doesn't intercept its taps. */}
       <div className="hidden lg:absolute lg:inset-y-0 lg:right-0 lg:z-20 lg:block lg:w-1/2">
         {isDesktop && <Scene3D />}
@@ -85,7 +85,7 @@ export function Hero() {
             variants={item}
             className="font-mono text-sm text-accent-2"
           >
-            In case we haven&apos;t met —
+            In case we haven&apos;t met,
           </motion.p>
 
           <motion.h1
@@ -107,8 +107,8 @@ export function Hero() {
             variants={item}
             className="mt-6 max-w-md text-base leading-relaxed text-muted"
           >
-            I build apps for small screens — and, if you look closely,
-            occasionally sneak a game onto one.
+            I build apps for small screens, and if you look closely, you might
+            catch a game hiding in one.
           </motion.p>
         </motion.div>
       </div>

@@ -76,7 +76,7 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
           access_key: key,
           subject: msg.subject,
           from_name: "Portfolio visitor",
-          message: `${msg.body}\n\n— From: ${msg.from}`,
+          message: `${msg.body}\n\nFrom: ${msg.from}`,
         }),
       });
       const data = await res.json().catch(() => ({ success: false }));
@@ -184,7 +184,7 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
         <meshBasicMaterial color="#050506" />
       </mesh>
 
-      {/* screen — OS canvas texture with rounded, transparent corners */}
+      {/* screen - OS canvas texture with rounded, transparent corners */}
       <mesh position={[0, 0, frontZ + 0.016]} onPointerDown={onScreenDown}>
         <planeGeometry args={[SCREEN_W, SCREEN_H]} />
         <meshBasicMaterial map={texture} transparent toneMapped={false} />

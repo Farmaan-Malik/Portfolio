@@ -16,7 +16,7 @@
   --font-mono: var(--font-mono);
 }
 
-/* Light — Sage & Clay */
+/* Light - Sage & Clay */
 :root {
   --background: #eef1e9;
   --foreground: #202a23;
@@ -36,7 +36,7 @@
   --top-highlight: rgba(255, 255, 255, 0.6);
 }
 
-/* Dark — Sage & Clay after dusk */
+/* Dark - Sage & Clay after dusk */
 .dark {
   --background: #0f130e;
   --foreground: #e7ede6;
@@ -132,7 +132,7 @@ body::before {
 }
 .animate-blink { animation: blink 1.1s step-end infinite; }
 
-/* Natural accent gradient text — deeper sage into terracotta for readability */
+/* Natural accent gradient text - deeper sage into terracotta for readability */
 .text-accent-gradient {
   background: linear-gradient(100deg, #5f9e79, #c9784e);
   -webkit-background-clip: text;

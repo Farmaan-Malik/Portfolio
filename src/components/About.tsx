@@ -9,7 +9,7 @@ const facets = [
   {
     icon: Smartphone,
     title: "Mobile architecture",
-    body: "Large-scale React Native apps — global state, custom media playback, offline caching, and the fiddly Android platform bits that most people avoid.",
+    body: "Large-scale React Native apps: global state, custom media playback, offline caching, and the fiddly Android platform bits that most people avoid.",
   },
   {
     icon: Server,
@@ -19,7 +19,7 @@ const facets = [
   {
     icon: Zap,
     title: "Performance & polish",
-    body: "Killing UI jitter, speeding up search, and upgrading React Native versions to cut user-reported issues — the unglamorous work that makes apps feel good.",
+    body: "Killing UI jitter, speeding up search, and upgrading React Native versions to cut user-reported issues. The unglamorous work that makes apps feel good.",
   },
 ];
 
@@ -34,17 +34,17 @@ export function About() {
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <Reveal>
             <p className="text-xl leading-relaxed text-foreground">
-              I spend my time building apps — and the rest of it trying to learn
+              I spend my time building apps, and the rest of it trying to learn
               something new.
             </p>
             <p className="mt-5 leading-relaxed text-muted">
               React Native is home base, but I&apos;m always wandering off into
-              new tools and tech — Go, backends, whatever&apos;s caught my eye
+              new tools and tech: Go, backends, whatever&apos;s caught my eye
               lately. A few things I keep coming back to:
             </p>
           </Reveal>
 
-          {/* interactive accordion — one facet open at a time */}
+          {/* interactive accordion - one facet open at a time */}
           <Reveal delay={0.1}>
             <div className="border-t border-foreground/10">
               {facets.map((f, i) => {

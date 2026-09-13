@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // A calm dot field with a warm glow that follows the cursor: nearby dots grow,
-// brighten, tint sage → clay, and nudge outward. Flat 2D canvas — light-weight
+// brighten, tint sage → clay, and nudge outward. Flat 2D canvas - light-weight
 // and controlled. Falls back to a faint static grid on touch / reduced-motion.
 export function InteractiveDots({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);

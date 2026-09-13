@@ -33,7 +33,7 @@ export const experiences: Experience[] = [
   {
     company: "Wiingy",
     role: "App Developer",
-    period: "Aug 2025 — Present",
+    period: "Aug 2025 – Present",
     current: true,
     points: [
       "Own the frontend of CoTutor, an AI-powered study assistant, across both student and tutor React Native apps.",
@@ -49,7 +49,7 @@ export const experiences: Experience[] = [
   {
     company: "MYCLNQ",
     role: "Software Development Engineer I",
-    period: "Jan 2025 — Jul 2025",
+    period: "Jan 2025 – Jul 2025",
     points: [
       "Contributed to 4 production React Native apps supporting provider and end-user workflows.",
       "Upgraded applications from React Native 0.64 to 0.74, reducing user-reported issues by 30%.",
@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
   {
     company: "MYCLNQ",
     role: "Software Developer Intern",
-    period: "Mar 2024 — Jul 2024",
+    period: "Mar 2024 – Jul 2024",
     points: [
       "Fixed 50+ bugs, improving app stability and reducing user disruptions.",
       "Implemented filtering features, reducing data access time by 20%.",
@@ -156,11 +156,11 @@ export const journey: Milestone[] = [
     kind: "education",
   },
   {
-    date: "2020 — 2024",
+    date: "2020 – 2024",
     title: "University of Kashmir",
     org: "B.E. Computer Science",
     detail:
-      "Bachelor of Engineering in Computer Science — the foundations: systems, algorithms, and software design.",
+      "Bachelor of Engineering in Computer Science. The foundations: systems, algorithms, and software design.",
     kind: "education",
   },
   {
@@ -180,11 +180,11 @@ export const journey: Milestone[] = [
     kind: "work",
   },
   {
-    date: "2025 — Now",
+    date: "2025 – Now",
     title: "Wiingy",
     org: "App Developer",
     detail:
-      "Own CoTutor's React Native frontend — custom audio playback, LiveKit VoIP, tutor scheduling, and Stripe billing.",
+      "Own CoTutor's React Native frontend: custom audio playback, LiveKit VoIP, tutor scheduling, and Stripe billing.",
     kind: "work",
   },
 ];
@@ -193,7 +193,7 @@ export const education = [
   {
     school: "University of Kashmir",
     detail: "Bachelor of Engineering, Computer Science",
-    period: "2020 — 2024",
+    period: "2020 – 2024",
   },
   {
     school: "Tyndale Biscoe School",

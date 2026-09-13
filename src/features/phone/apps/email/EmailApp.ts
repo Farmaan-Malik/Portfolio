@@ -194,7 +194,7 @@ export class EmailApp implements PhoneApp {
     ctx.textAlign = "center";
     ctx.fillText("Send", s.x + s.w / 2, s.y + s.h / 2 + 1);
 
-    // To (fixed) — reserve room for the "+" open-in-mail button
+    // To (fixed) - reserve room for the "+" open-in-mail button
     this.fixedField(ctx, "To", this.opts.to, this.barY, 44);
     this.drawPlus(ctx);
 

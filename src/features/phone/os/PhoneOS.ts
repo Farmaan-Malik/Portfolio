@@ -57,7 +57,7 @@ export class PhoneOS {
       });
     }
 
-    // Theme tile: sits in the app row but just toggles — no launch, no splash.
+    // Theme tile: sits in the app row but just toggles - no launch, no splash.
     if (opts.theme) {
       const theme = opts.theme;
       icons.push({

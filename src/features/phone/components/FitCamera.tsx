@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import * as THREE from "three";
 
 // Pulls the camera back so a sphere of `radius` always fits BOTH axes of the
-// canvas regardless of aspect ratio — the phone + nexus are never clipped.
+// canvas regardless of aspect ratio - the phone + nexus are never clipped.
 export function FitCamera({ radius = 2.6 }: { radius?: number }) {
   const camera = useThree((s) => s.camera);
   const size = useThree((s) => s.size);

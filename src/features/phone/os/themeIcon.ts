@@ -46,7 +46,7 @@ export function drawThemeIcon(
       ctx.stroke();
     }
   } else {
-    // crescent moon (tap to go dark) — lune between two same-radius circles
+    // crescent moon (tap to go dark) - lune between two same-radius circles
     ctx.fillStyle = "#eef2ff";
     ctx.beginPath();
     ctx.arc(cx - R * 0.2, cy, R, Math.PI * 0.5, Math.PI * 1.5, false);

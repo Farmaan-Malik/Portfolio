@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://farmaanmalik.dev"),
-  title: "Farmaan Malik — Software Developer",
+  title: "Farmaan Malik · Software Developer",
   description:
     "Mobile-first software developer building large-scale React Native applications used in production. Specialized in mobile architecture, state management, and real-time UI.",
   keywords: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Farmaan Malik" }],
   openGraph: {
-    title: "Farmaan Malik — Software Developer",
+    title: "Farmaan Malik · Software Developer",
     description:
       "Mobile-first software developer building large-scale React Native applications used in production.",
     type: "website",
