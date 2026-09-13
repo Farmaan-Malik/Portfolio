@@ -57,13 +57,14 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
       }
     };
 
-    // Actually delivers the message (no mail client) via Web3Forms.
+    // Web3Forms expects a browser-side submission (server calls get Cloudflare
+    // 403'd). The access key is public/safe to expose.
     const sendEmail = async (msg: {
       subject: string;
       body: string;
       from: string;
     }) => {
-      const key = process.env.WEB3FORMS_KEY;
+      const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
       if (!key) throw new Error("Email service not configured");
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -75,7 +76,7 @@ export function Phone({ stateRef }: { stateRef: RefObject<PhoneMode> }) {
           access_key: key,
           subject: msg.subject,
           from_name: msg.from,
-          email: msg.from, // becomes the reply-to
+          email: msg.from, // reply-to
           replyto: msg.from,
           message: msg.body,
         }),
